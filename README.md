@@ -27,3 +27,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - gigalixir apps
 - git remote add gigalixir
 - git push gigalixir main
+- npm install --prefix ./assets
+- mix ecto.setup
+- create database: gigalixir pg:create --free
