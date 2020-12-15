@@ -25,3 +25,5 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - Install gigalixir: brew tap gigalixir/brew && brew install gigalixir
 - gigalixir login
 - gigalixir apps
+- git remote add gigalixir
+- git push gigalixir main
