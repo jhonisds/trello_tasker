@@ -19,7 +19,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - Forum: https://elixirforum.com/c/phoenix-forum
 - Source: https://github.com/phoenixframework/phoenix
 
-## Create Project
+## Commands
 
 - mix phx.new trello_tasker --live
 - Install gigalixir: brew tap gigalixir/brew && brew install gigalixir
@@ -30,3 +30,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - npm install --prefix ./assets
 - mix ecto.setup
 - create database: gigalixir pg:create --free
+- iex -S mix phx.server
