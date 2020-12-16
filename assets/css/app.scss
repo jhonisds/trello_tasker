@@ -1,4 +1,12 @@
 /* This file is for your main application css. */
+
+/* Setting global style */
+
+$bg-color: #fff;
+$detail-color: #9eebee;
+$gradient-detail: linear-gradient(-45deg, $detail-color, $bg-color);
+
+@import "global";
 @import "../node_modules/nprogress/nprogress.css";
 
 /* LiveView specific classes for your customizations */
