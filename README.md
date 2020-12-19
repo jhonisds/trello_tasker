@@ -31,3 +31,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - mix ecto.setup
 - create database: gigalixir pg:create --free
 - iex -S mix phx.server
+- source .env
+- $ mix phx.gen.context Cards Card cards path
+- $ mix ecto.migrate
+- gigalixir config:set TRELLO_KEY="xxxxxx"/TRELLO_TOKEN="xxxx"
+- gigalixir ps:migrate

@@ -1,32 +1,26 @@
 <section class="container">
-    <h1>Manage your cards</h1>
+    <h1>Monitoring your cards</h1>
 
-<form action="" id="create-card">
-    <input type="text" placeholder="Card number">
-    <button type="submit"> Search </button>
+<%= f = form_for @changeset, "#",  id: "create-card", phx_submit: "create" %>
+    <%= text_input f, :path, placeholder: "Insert card number", class: f.errors && f.errors[:path] &&  "error" %>
+    <%= error_tag f, :path %>
+    <%= submit "Search", phx_disable_with: "Searching..." %>
 </form>
 
 <div class="cards">
-    <a href="">
-        <img src="https://cdn1.iconfinder.com/data/icons/designer-skills/128/trello-512.png" alt="">
+    <%= for card  <- @cards do %>
+
+    <%= live_redirect to: Routes.card_info_path(@socket, :index, card.card_id) do %>
+        <img src="<%= card.image %>" alt="">
         <div>
-            <strong>Title</strong>
+            <strong> <%= card.name %> </strong>
             <p>
-                Description
+                <%= card.description %>
             </p>
         </div>
         <i class="fa fa-caret-right"></i>
-    </a>
-        <a href="">
-        <img src="https://cdn1.iconfinder.com/data/icons/designer-skills/128/trello-512.png" alt="">
-        <div>
-            <strong>Title</strong>
-            <p>
-                Description
-            </p>
-        </div>
-        <i class="fa fa-caret-right"></i>
-    </a>
+    <% end %>
+    <% end %>
 
 </div>
 
