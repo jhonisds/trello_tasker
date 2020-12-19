@@ -23,16 +23,20 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 - mix phx.new trello_tasker --live
 - Install gigalixir: brew tap gigalixir/brew && brew install gigalixir
-- gigalixir login
-- gigalixir apps
-- git remote add gigalixir
-- git push gigalixir main
-- npm install --prefix ./assets
-- mix ecto.setup
+- $ gigalixir login
+- $ gigalixir apps
+- $ git remote add gigalixir
+- $ git push gigalixir main
+- $ npm install --prefix ./assets
+- $ mix ecto.setup
 - create database: gigalixir pg:create --free
-- iex -S mix phx.server
-- source .env
+- $ iex -S mix phx.server
+- $ source .env
 - $ mix phx.gen.context Cards Card cards path
 - $ mix ecto.migrate
 - gigalixir config:set TRELLO_KEY="xxxxxx"/TRELLO_TOKEN="xxxx"
-- gigalixir ps:migrate
+- gerar chave: `ssh-keygen -t rsa`
+- $ cat `/Users/jhoni/.ssh/id_rsa.pub`
+- $ gigalixir account:ssh_keys:add "$(cat /Users/jhoni/.ssh/id_rsa.pub)"
+- $ gigalixir account:ssh_keys
+- $ gigalixir ps:migrate
