@@ -24,7 +24,6 @@ defmodule TrelloTasker.Shared.Providers.CacheProvider.CardCache do
 
   def handle_cast({:put, key, value}, state) do
     :ets.insert(@data_base, {key, value})
-    IO.inspect({key, value}, label: "handle_cast:")
     {:noreply, state}
   end
 end

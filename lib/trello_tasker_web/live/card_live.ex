@@ -3,14 +3,14 @@ defmodule TrelloTaskerWeb.CardLive do
 
   alias Phoenix.View
   alias TrelloTaskerWeb.CardView
-  alias TrelloTasker.Shared.Services.Trello
+  alias TrelloTasker.Shared.Services.{CreateCard, FindAllCards}
   alias TrelloTasker.Cards.Card
-  alias TrelloTasker.Cards
+
 
   @impl true
   def mount(_params, _session, socket) do
     changeset = Card.changeset(%Card{})
-    {:ok, socket |> assign(cards: list_cards(), changeset: changeset)}
+    {:ok, socket |> assign(cards: FindAllCards.execute(), changeset: changeset)}
   end
 
   @impl true
@@ -28,28 +28,18 @@ defmodule TrelloTaskerWeb.CardLive do
         {:noreply, assign(socket, :changeset, changeset)}
 
       true ->
-        card["path"]
-        |> Trello.get_card()
-        |> case do
-          {:error, error} ->
-            {:noreply, socket |> put_flash(:error, error) |> push_redirect(to: "/")}
-
-          _card_info ->
-            card
-            |> Cards.create_card()
-            |> response(socket)
-        end
+        card
+        |> CreateCard.execute()
+        |> response(socket)
     end
   end
+
+  defp response({:trello_error, error}, socket),
+    do: {:noreply, socket |> put_flash(:error, error) |> push_redirect(to: "/")}
 
   defp response({:ok, _card}, socket),
     do: {:noreply, socket |> put_flash(:info, "Created card") |> push_redirect(to: "/")}
 
   defp response({:error, changeset}, socket),
     do: {:noreply, assign(socket, :changeset, changeset)}
-
-  defp list_cards do
-    Cards.list_cards()
-    |> Enum.map(&Trello.get_card(&1.path))
-  end
 end
